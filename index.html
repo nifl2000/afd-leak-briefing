@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Der AfD-E-Mail-Leak – Briefing (PDF)</title>
+<meta name="description" content="421.179 Mails, 281,2 GiB – was belegt ist und was nicht. Ein 12-seitiges Briefing auf Basis öffentlicher Quellen, ohne Auswertung der Leak-Daten.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Der AfD-E-Mail-Leak – was belegt ist und was nicht">
+<meta property="og:description" content="12 Seiten, 34 Quellen: Umfang, Angriffsweg, DKIM-Grenzen, Recht und Mythen-Check.">
+<meta property="og:image" content="https://nifl2000.github.io/afd-leak-briefing/cover.png">
+<meta property="og:url" content="https://nifl2000.github.io/afd-leak-briefing/">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root{
+    --cover:#0B252B;
+    --covercard:#113138;
+    --line:#2C4B51;
+    --text:#E6EEEC;
+    --dim:#9FB3B2;
+    --accent:#B03A2A;
+    --accentlt:#EAD5CE;
+    --petrol:#0F3B43;
+    --paper:#FAF6EF;
+    --muted:#6E675C;
+    --rule:#D9D0C2;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--cover);
+    color:var(--text);
+    font-family:"Charter", Georgia, "Times New Roman", serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 24px 56px}
+  .top{display:flex;justify-content:space-between;align-items:center;gap:16px;
+    border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:40px}
+  .kicker{font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accentlt)}
+  .date{font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:12px;color:var(--dim);white-space:nowrap}
+  .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:start}
+  h1{font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:clamp(34px,5.2vw,58px);line-height:1.02;letter-spacing:-.02em;
+    margin:0 0 18px;color:#fff}
+  .sub{font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:clamp(17px,2.1vw,22px);line-height:1.35;color:var(--text);margin:0 0 22px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin:0 0 26px;
+    font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:12.5px;color:var(--dim)}
+  .meta span::before{content:"";display:inline-block;width:6px;height:6px;
+    background:var(--accent);margin-right:8px;vertical-align:2px}
+  .lead{font-size:17px;color:var(--text);margin:0 0 28px;max-width:58ch}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:26px}
+  a.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;
+    font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    font-weight:700;font-size:14px;padding:12px 18px;border-radius:2px;
+    transition:transform .12s ease, background .12s ease}
+  a.primary{background:var(--accent);color:#fff}
+  a.primary:hover{background:#9a3123;transform:translateY(-1px)}
+  a.secondary{border:1px solid var(--line);color:var(--text)}
+  a.secondary:hover{border-color:var(--dim);background:var(--covercard)}
+  .small{font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:12px;color:var(--dim)}
+  .cover{position:relative;margin-top:6px}
+  .cover img{width:100%;height:auto;display:block;
+    box-shadow:0 24px 60px rgba(0,0,0,.42);border:1px solid var(--line)}
+  .cover .cap{margin-top:10px;font-size:11.5px;color:var(--dim);
+    font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:46px 0 0}
+  .fact{background:var(--covercard);border-top:2px solid var(--accent);padding:16px 16px 18px}
+  .fact .n{font-family:"Avenir Next","Segoe UI",Helvetica,Arial,sans-serif;
+    font-size:22px;font-weight:700;color:#fff;display:block;margin-bottom:4px}
+  .fact p{margin:0;font-size:13.5px;color:var(--dim);line-height:1.45}
+  .note{margin-top:38px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:12.5px;color:var(--dim);max-width:80ch}
+  .note a{color:var(--accentlt)}
+  @media (max-width:820px){
+    .hero{grid-template-columns:1fr;gap:32px}
+    .cover{order:-1;max-width:420px}
+    .facts{grid-template-columns:1fr}
+    .wrap{padding:22px 18px 40px}
+    .top{margin-bottom:28px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="kicker">Briefing · Datenleck · Deutschland · Oktober 2026</div>
+    <div class="date">Stand 22.10.2026</div>
+  </div>
+
+  <div class="hero">
+    <div>
+      <h1>Der AfD-E-Mail-Leak</h1>
+      <p class="sub">421.179 Mails, 281,2 GiB – was belegt ist und was nicht.</p>
+
+      <div class="meta">
+        <span>12 Seiten</span>
+        <span>34 Quellen</span>
+        <span>keine Auswertung der Leak-Daten</span>
+      </div>
+
+      <p class="lead">
+        Am 19. Oktober 2026 ging <code>hexane.cc</code> online. Die AfD bestätigte
+        einen Angriff auf einen Hosting-Dienstleister. Das Briefing sortiert den
+        öffentlichen Kenntnisstand: was belegt ist, was plausibel erscheint – und
+        was bislang nur behauptet wird.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href="afd-leak-briefing.pdf" target="_blank" rel="noopener">PDF öffnen</a>
+        <a class="btn secondary" href="afd-leak-briefing.pdf" download>Herunterladen · 167 KB</a>
+      </div>
+
+      <p class="small">Öffentliche Quellen, Quellenstand 22.10.2026. Keine Torrent-, Magnet- oder Mirror-Links, keine personenbezogenen Daten aus dem Material.</p>
+    </div>
+
+    <div class="cover">
+      <a href="afd-leak-briefing.pdf" target="_blank" rel="noopener">
+        <img src="cover.png" alt="Titelseite des Briefings: dunkelgrüner Grund, Titel „Der AfD-E-Mail-Leak“, Unterzeile „421.179 Mails, 281,2 GiB – was belegt ist und was nicht“, geschwärzte Mail-Skizze und vier Kennzahlen.">
+      </a>
+      <div class="cap">Titelseite · PDF, 12 Seiten, A4</div>
+    </div>
+  </div>
+
+  <div class="facts">
+    <div class="fact">
+      <span class="n">421.179</span>
+      <p>Mails im Archiv – Angabe der Betreiber. Der öffentliche Index zeigt davon nur einen Ausschnitt.</p>
+    </div>
+    <div class="fact">
+      <span class="n">2 Erzählungen</span>
+      <p>Die AfD nennt „Ende September“, ein Sprecher „Anfang September“. Der Korpus endet am 14.09.</p>
+    </div>
+    <div class="fact">
+      <span class="n">DKIM</span>
+      <p>Die Signatur belegt Unverändertheit, nicht Wahrheit, Absender oder Zeitpunkt.</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <p><strong>Zum Dokument:</strong> Das Briefing ist eine KI-gestützte Auswertung
+    öffentlicher Quellen, redaktionell geprüft. Es wurden keine Leak-Daten
+    heruntergeladen, gespeichert oder ausgewertet. Rechtsaussagen sind
+    Einordnungen mit Quellen, keine Rechtsberatung. Der Quellenstand ist
+    22. Oktober 2026; Entwicklungen können überholt sein.</p>
+    <p>Hinweise auf Fehler sind willkommen – über die Issues im
+    <a href="https://github.com/nifl2000/afd-leak-briefing">Repository</a>.</p>
+  </div>
+
+</div>
+</body>
+</html>
